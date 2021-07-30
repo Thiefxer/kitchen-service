@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Register Here</title>
+</head>
+<body>
+
+	<h1>Kitchen Registration Page 2</h1>
+	<form th:action="@{/register-page=2}" th:object="${kitchen}"
+		method="post">
+
+		<p class="error-message" th:if="${#fields.hasGlobalErrors()}"
+			th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
+			error</p>
+			<h2>Kitchen working days</h2> 
+		<div>
+			<label>Monday</label> 
+			<input type="checkbox" name="myBooleanVariable" th:checked="${myBooleanVariable}" />
+		
+			<label>Tuesday</label> 
+			<input type="checkbox" name="myBooleanVariable" th:checked="${myBooleanVariable}" />
+		
+			<label>Wednesday</label> 
+			<input type="checkbox" name="myBooleanVariable" th:checked="${myBooleanVariable}" />
+		
+			<label>Thursday</label> 
+			<input type="checkbox" name="myBooleanVariable" th:checked="${myBooleanVariable}" />
+		
+			<label>Friday</label> 
+			<input type="checkbox" name="myBooleanVariable" th:checked="${myBooleanVariable}" />
+		
+			<label>Saturday</label> 
+			<input type="checkbox" name="myBooleanVariable" th:checked="${myBooleanVariable}" />
+		
+			<label>Sunday</label> 
+			<input type="checkbox" name="myBooleanVariable" th:checked="${myBooleanVariable}" />
+		</div>
+		<br>
+		<h2>Kitchen hours</h2> 
+		<div>
+			<label for="start-time">Kitchen opens at: </label> 
+			<input id="start-time" type="time" name="start-time" value="13:37">
+				 
+				<label>End time</label> <select id="percentage" name="percentage">
+				<option th:each="i : ${#numbers.sequence(0, 24)}" th:value="${i}"
+					th:text="${i}"></option>
+			</select>
+		</div>
+		<br>
+		<h2>Kitchen Menu</h2> 
+		<table>
+			<tr>Menu Items</tr>
+			<tr th:each="menu : ${items}">
+
+				<td><a th:href="@{/list_items/{id}(id=${menu.id})}"
+					th:text="${menu.itemName}"></a></td>
+			</tr>
+		</table>
+		<div class="form-group">
+			<a th:href="@{/edit_menu}"><button type="button">Edit
+					Menu</button></a>
+		</div>
+		<div class="form-group">
+			<a href="/"><button type="button">Cancel</button></a> <a href="/"><button
+					type="submit" class="btn btn-success">Save</button></a>
+		</div>
+	</form>
+</body>
+</html>
+<html>
+</html>

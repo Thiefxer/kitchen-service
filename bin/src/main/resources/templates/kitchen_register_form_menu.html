@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Register Here</title>
+</head>
+<body>
+	
+	<h1>Kitchen Registration Menu</h1>
+		<table>
+		<tr>Menu Items</tr>
+		<tr th:each="menu : ${items}">
+	  
+		<td><a th:href="@{/list_items/{id}(id=${menu.id})}" th:text ="${menu.itemName}"></a></td>
+
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<td> <a th:href="@{/edit_item/{id}(id=${menu.id})}"><button type="button">Edit Item</button></a>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<td> <a th:href="@{/delete_item/{id}(id=${menu.id})}"><button type="button">Delete Item</button></a>
+		</tr>
+		</table>
+		<a href="/register-page=2"><button type="button">Go Back</button></a>
+		<a href="/add_menu_item"><button type="button">Add Item</button></a>
+</body>
+</html>

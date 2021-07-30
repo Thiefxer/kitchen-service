@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Register Here</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}" />
+</head>
+<body>
+
+	<div class="topnav">
+		<a class="active" th:href="@{/register-page=2}">Home</a> <a
+			th:href="@{/edit_menu}">Menu</a> <a href="#kitchen"><span
+			th:text="${kitchen.name}"></span></a> <a href="/">Logout</a>
+	</div>
+
+	<h1>
+		<span th:text="${kitchen.name}"></span> Menu
+	</h1>
+	<table>
+		<tr>Menu Items
+		</tr>
+
+		<tr th:each="menu : ${items}">
+			<td><a th:href="@{/list_items/{id}(id=${menu.id})}"
+				th:text="${menu.itemName}"></a></td> &nbsp;&nbsp;&nbsp;&nbsp;
+			<td><a th:href="@{/edit_item/{id}(id=${menu.id})}"><button
+						type="button">Edit Item</button></a> &nbsp;&nbsp;&nbsp;&nbsp;
+			<td><a th:href="@{/delete_item/{id}(id=${menu.id})}"><button
+						type="button">Delete Item</button></a>
+		</tr>
+	</table>
+	<br>
+	<a href="/register-page=2"><button type="button">Go Back</button></a>
+	<a href="/add_menu_item"><button type="button">Add Item</button></a>
+</body>
+</html>

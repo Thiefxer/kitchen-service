@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Register Here</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}" />
+</head>
+<body>
+
+	<div class="topnav">
+		<a class="active" th:href="@{/register-page=2}">Home</a> <a
+			th:href="@{/edit_menu}">Menu</a> <a href="#kitchen"><span
+			th:text="${kitchen.name}"></span></a> <a href="/">Logout</a>
+	</div>
+
+	<h1>Kitchen Registration Page 2</h1>
+	<form th:action="@{/register-page=2}" th:object="${kitchen}"
+		method="post">
+		<p class="error-message" th:if="${#fields.hasGlobalErrors()}"
+			th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
+			error</p>
+		<h2>Kitchen working days</h2>
+		<!--  <input type="hidden" th:field="*{id}">
+		<input type="hidden" th:field="*{name}">
+		<ul>
+			<li th:each="day : ${selectableDays}">
+				<div class="ui checkbox">
+					<input type="checkbox" th:field="*{days}" th:value="${days.id}">
+					<label th:text="${days.day}"></label>
+				</div>
+		</ul>
+
+		<br>-->
+		<h2>Kitchen hours</h2>
+		<div>
+			<label for="start-time">Kitchen opens at: </label> <input
+				id="start-time" type="time" name="start-time" value="13:37">
+
+			<label>End time</label> <select id="percentage" name="percentage">
+				<option th:each="i : ${#numbers.sequence(0, 24)}" th:value="${i}"
+					th:text="${i}"></option>
+			</select>
+		</div>
+		<br>
+		<h2>Kitchen Menu</h2>
+		<table>
+			<tr th:each="menu : ${items}">
+				<td><a th:href="@{/list_items/{id}(id=${menu.id})}"
+					th:text="${menu.itemName}"></a></td>
+			</tr>
+		</table>
+		<div class="form-group">
+			<a th:href="@{/edit_menu}"><button type="button">Edit
+					Menu</button></a> <a href="/"><button type="button">Cancel</button></a> <a
+				href="/"><button type="submit" class="btn btn-success">Save</button></a>
+		</div>
+	</form>
+	<br>
+	<div>
+		<form th:action="@{/kitchen/save}" th:object="${kitchen}" method="post" enctype="multipart/form-data">
+			<label for="imageURL">Choose a profile picture for your Kitchen:</label> <br> 
+				<input type="file" name="imageURL" accept="image/png, image/jpeg" />
+		</form>
+	</div>
+</body>
+</html>
